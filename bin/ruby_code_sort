@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "ruby_code_sort"
+
+print RubyCodeSort.sort($stdin.read)
