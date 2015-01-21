@@ -1,5 +1,4 @@
 require 'parser/current'
-require 'unparser'
 
 code = $stdin.read
 ast = Parser::CurrentRuby.parse(code)
@@ -12,7 +11,9 @@ end
 
 new_code = code.dup
 offset = 0
-sorted = ast.children.sort_by{|i| Unparser.unparse(i)}
+sorted = ast.children.sort_by{|child|
+  code[child.loc.expression.begin_pos .. child.loc.expression.end_pos]
+}
 ast.children.zip(sorted).each{|old, new|
   old_begin = old.loc.expression.begin_pos + offset
   old_end   = old.loc.expression.end_pos   + offset
