@@ -7,6 +7,9 @@ module RubyCodeSort
   def sort(code)
     ast = Parser::CurrentRuby.parse(code)
 
+    # If code is empty, returns code as it is.
+    return code if ast.nil?
+
     # If there is only one statement, returns code as it is.
     return code unless ast.type == :begin
 
