@@ -10,8 +10,9 @@ module RubyCodeSort
     # If code is empty, returns code as it is.
     return code if ast.nil?
 
-    # If there is only one statement, returns code as it is.
-    return code unless ast.type == :begin
+    # If there is only one statement and it is not a hash literal,
+    # returns code as it is.
+    return code unless [:begin, :hash].include?(ast.type)
 
     new_code = code.dup
     sorted = ast.children.sort_by{|child|
