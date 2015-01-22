@@ -24,7 +24,7 @@ module RubyCodeSort
       new_begin = new.loc.expression.begin_pos
       new_end   = new.loc.expression.end_pos
 
-      new_code[old_begin .. old_end] = code[new_begin .. new_end]
+      new_code[old_begin ... old_end] = code[new_begin ... new_end]
     }
 
     new_code

@@ -3,10 +3,4 @@ require "ruby_code_sort"
 
 code = $stdin.read
 
-if code[-1] == "\n"
-  print RubyCodeSort.sort(code)
-else
-  # Without the final newline, the result will be broken.
-  # e.g. RubyCodeSort.code("foo\nbar") == "barfoo\n"
-  print RubyCodeSort.sort(code + "\n").chomp
-end
+print RubyCodeSort.sort(code)
